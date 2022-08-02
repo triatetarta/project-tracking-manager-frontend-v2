@@ -36,19 +36,17 @@ const updateUser = async (userId, userData, token) => {
 };
 
 // Logout user
-const logout = () => localStorage.removeItem("user");
-
-// Get all users
-const getAllUsers = async (token) => {
-  const config = {
-    headers: {
-      Authorization: `Bearer ${token}`,
-    },
-  };
-
-  const response = await axios.get(`${API_URL}all`, config);
+const logout = async () => {
+  const response = await axios.delete(`${API_URL}auth/logout`);
 
   return response.data;
+};
+
+// Get all users
+const getAllUsers = async () => {
+  const response = await axios.get(`${API_URL}users`);
+
+  return response.data.users;
 };
 
 // Show Me

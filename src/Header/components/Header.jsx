@@ -22,6 +22,7 @@ const Header = () => {
   const onLogout = () => {
     dispatch(logout());
     dispatch(reset());
+    dispatch(closeAccount());
     navigate("/");
   };
 

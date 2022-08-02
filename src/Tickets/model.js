@@ -1,10 +1,11 @@
 export const initialState = {
-  user: null,
-  users: [],
+  tickets: [],
+  ticket: {},
   isError: false,
-  isSuccess: false,
   isLoading: false,
+  isSuccess: false,
   message: "",
   updateSuccess: false,
-  getMeLoading: false,
+  deleteSuccess: false,
+  createSuccess: false,
 };
