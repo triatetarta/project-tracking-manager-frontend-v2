@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { PlusIcon } from "@heroicons/react/solid";
 import { Sidebar } from "../Sidebar";
 import { Tickets } from "../Tickets";
