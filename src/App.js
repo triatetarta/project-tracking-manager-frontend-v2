@@ -5,12 +5,13 @@ import { Home } from "./Home/";
 import TicketsPage from "./Pages/TicketsPage";
 import { Login, Register } from "./Auth";
 import { PrivateRoute } from "./PrivateRoute";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { closeAccount } from "./Header/headerSlice";
+import { Account } from "./Account";
 import { useEffect } from "react";
-import { getMe } from "./Auth/authSlice";
 
 const App = () => {
+  const { getMeLoading } = useSelector((state) => state.auth);
   const dispatch = useDispatch();
 
   const closeOpenMenus = (e) => {
@@ -22,8 +23,13 @@ const App = () => {
   };
 
   useEffect(() => {
-    dispatch(getMe());
-  }, []);
+    if (getMeLoading) {
+      document.querySelector("body").style.overflow = "hidden";
+    }
+    if (!getMeLoading) {
+      document.querySelector("body").style.overflow = "auto";
+    }
+  }, [getMeLoading]);
 
   return (
     <>
@@ -37,10 +43,7 @@ const App = () => {
             <Route path='/tickets' element={<TicketsPage />} />
           </Route>
           <Route path='/account' element={<PrivateRoute />}>
-            {/* <Route path='/account' element={<Account />} /> */}
-            <>
-              <>account</>
-            </>
+            <Route path='/account' element={<Account />} />
           </Route>
         </Routes>
       </div>

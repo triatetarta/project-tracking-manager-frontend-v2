@@ -19,7 +19,7 @@ const Tickets = ({ setCreateNew, createNew }) => {
   const [openTicket, setOpenTicket] = useState(false);
   const {
     tickets,
-    isLoading,
+    isTicketsLoading,
     isSuccess,
     updateSuccess,
     deleteSuccess,
@@ -75,7 +75,7 @@ const Tickets = ({ setCreateNew, createNew }) => {
           </h1>
 
           <div className='flex flex-col space-y-2'>
-            {isLoading ? (
+            {isTicketsLoading ? (
               <SkeletonTicket />
             ) : (
               <>
@@ -112,7 +112,7 @@ const Tickets = ({ setCreateNew, createNew }) => {
           </h1>
 
           <div className='flex flex-col space-y-2'>
-            {isLoading ? (
+            {isTicketsLoading ? (
               <SkeletonTicket />
             ) : (
               <>
@@ -149,7 +149,7 @@ const Tickets = ({ setCreateNew, createNew }) => {
           </h1>
 
           <div className='flex flex-col space-y-2'>
-            {isLoading ? (
+            {isTicketsLoading ? (
               <SkeletonTicket />
             ) : (
               <>

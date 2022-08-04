@@ -8,7 +8,7 @@ const PrivateRoute = () => {
   const { getMeLoading } = useSelector((state) => state.auth);
 
   if (checkingStatus || getMeLoading) {
-    return <Spinner />;
+    return <Spinner color='dark:fill-white' />;
   }
 
   return loggedIn ? <Outlet /> : <Navigate to='/login' />;

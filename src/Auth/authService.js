@@ -19,20 +19,10 @@ const login = async (userData) => {
 };
 
 // Update user
-const updateUser = async (userId, userData, token) => {
-  const config = {
-    headers: {
-      Authorization: `Bearer ${token}`,
-    },
-  };
+const updateUser = async (userData) => {
+  const response = await axios.patch(`${API_URL}users/updateUser`, userData);
 
-  const response = await axios.patch(`${API_URL}${userId}`, userData, config);
-
-  if (response.data) {
-    localStorage.setItem("user", JSON.stringify(response.data));
-  }
-
-  return response.data;
+  return response.data.user;
 };
 
 // Logout user

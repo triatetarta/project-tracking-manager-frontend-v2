@@ -5,13 +5,14 @@ import Workflow from "./Workflow";
 import Plans from "./Plans";
 import { useSelector } from "react-redux";
 import { Navigate } from "react-router-dom";
+import Spinner from "../../Spinner/components/Spinner";
 
 const Home = () => {
   const { user, getMeLoading } = useSelector((state) => state.auth);
 
   return (
     <>
-      {getMeLoading && <div>loading</div>}
+      {getMeLoading && <Spinner color='dark:fill-white' />}
       {user && <Navigate to='/tickets' />}
 
       {!user && (

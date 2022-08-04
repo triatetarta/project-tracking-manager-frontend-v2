@@ -2,9 +2,10 @@ import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { login, reset } from "../authSlice";
-import toast from "react-hot-toast";
 
 const Login = () => {
+  const { user, isLoading, isSuccess, message, isError, getMeLoading } =
+    useSelector((state) => state.auth);
   const [formData, setFormData] = useState({
     email: "",
     password: "",
@@ -14,13 +15,10 @@ const Login = () => {
 
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  const { user, isLoading, isSuccess, message, isError } = useSelector(
-    (state) => state.auth
-  );
 
   useEffect(() => {
     if (isError) {
-      toast.error(message);
+      console.log(message);
     }
 
     if (isSuccess || user) {
@@ -49,6 +47,8 @@ const Login = () => {
 
     dispatch(login(userData));
   };
+
+  if (getMeLoading) return null;
 
   return (
     <section className='min-h-[calc(100vh-17.9rem)] flex items-center justify-center flex-col space-y-6 text-header-main'>

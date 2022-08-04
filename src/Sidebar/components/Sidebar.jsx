@@ -32,8 +32,8 @@ const Sidebar = () => {
     if (users === undefined) return;
 
     const justTeams = users.map((user) => {
-      if (user.department === "") return;
-      return user.department;
+      if (user.team === "") return;
+      return user.team;
     });
 
     const uniqueTeams = [...new Set(justTeams)];
@@ -80,7 +80,7 @@ const Sidebar = () => {
                 return (
                   <div
                     key={index}
-                    className='text-xs font-semibold bg-projects-bg text-white px-2 py-2 rounded-md select-none'
+                    className='text-xs font-semibold bg-projects-bg text-white px-2 py-2 rounded-md select-none capitalize'
                   >
                     {project}
                   </div>
@@ -110,7 +110,7 @@ const Sidebar = () => {
                 return (
                   <span
                     key={index}
-                    className='text-xs font-semibold bg-teams-bg text-white px-2 py-2 rounded-md select-none'
+                    className='text-xs font-semibold bg-teams-bg text-white px-2 py-2 rounded-md select-none capitalize'
                   >
                     {team}
                   </span>

@@ -5,6 +5,8 @@ export const initialState = {
   isLoading: false,
   isSuccess: false,
   message: "",
+  isTicketsLoading: false,
+  isTicketLoading: false,
   updateSuccess: false,
   deleteSuccess: false,
   createSuccess: false,

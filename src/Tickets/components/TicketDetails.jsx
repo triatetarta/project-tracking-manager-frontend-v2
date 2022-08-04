@@ -22,9 +22,8 @@ import SkeletonTicketDetails from "../../Skeletons/SkeletonTicketDetails";
 import SkeletonComments from "../../Skeletons/SkeletonComments";
 
 const TicketDetails = ({ closeTicketDetails, ticketId }) => {
-  const { ticket, isLoading, isError, message, updateSuccess } = useSelector(
-    (state) => state.tickets
-  );
+  const { ticket, isTicketLoading, isError, message, updateSuccess } =
+    useSelector((state) => state.tickets);
 
   const { comments, isLoading: commentsIsLoading } = useSelector(
     (state) => state.comment
@@ -56,10 +55,10 @@ const TicketDetails = ({ closeTicketDetails, ticketId }) => {
   }, [isError, message, ticketId]);
 
   useEffect(() => {
-    if (!updateSuccess || isLoading) return;
+    if (!updateSuccess) return;
 
     dispatch(getTicket(ticketId));
-  }, [updateSuccess, isLoading]);
+  }, [updateSuccess]);
 
   useEffect(() => {
     const isTicketEmpty = Object.keys(ticket).length === 0;
@@ -142,9 +141,9 @@ const TicketDetails = ({ closeTicketDetails, ticketId }) => {
         initial={{ y: 100, opacity: 0 }}
         animate={{ y: 0, opacity: 1 }}
         exit={{ y: 100, opacity: 0 }}
-        className='bg-white py-6 px-4 mt-28 w-[360px] h-2/3 rounded-md shadow-sm overflow-y-scroll'
+        className='bg-white py-6 px-4 mt-28 w-[360px] h-2/3 rounded-md shadow-sm overflow-y-scroll scrollBarWidth before:scrollBarTrack scrollBarThumb'
       >
-        {isLoading ? (
+        {isTicketLoading ? (
           <SkeletonTicketDetails />
         ) : (
           <>
@@ -292,7 +291,7 @@ const TicketDetails = ({ closeTicketDetails, ticketId }) => {
                     </>
                   ) : (
                     <>
-                      {!isLoading && (
+                      {!isTicketLoading && (
                         <motion.p
                           initial={{ display: "none" }}
                           animate={{ display: "inline-flex" }}
