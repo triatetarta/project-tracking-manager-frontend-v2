@@ -26,8 +26,8 @@ const NewProject = () => {
     e.preventDefault();
 
     const projectData = {
-      title,
-      description,
+      title: title.toLowerCase(),
+      description: description.toLowerCase(),
     };
 
     if (title === "" || description === "") {

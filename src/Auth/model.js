@@ -7,4 +7,5 @@ export const initialState = {
   message: "",
   updateSuccess: false,
   getMeLoading: false,
+  uploadImageLoading: false,
 };

@@ -6,7 +6,7 @@ const API_URL = `/api/v1/`;
 
 // Register new user
 const register = async (userData) => {
-  const response = await axios.post(API_URL, userData);
+  const response = await axios.post(`${API_URL}auth/register`, userData);
 
   return response.data.user;
 };
@@ -21,6 +21,15 @@ const login = async (userData) => {
 // Update user
 const updateUser = async (userData) => {
   const response = await axios.patch(`${API_URL}users/updateUser`, userData);
+
+  return response.data.user;
+};
+
+// Upload/Update user's profile pic
+const uploadImage = async (image) => {
+  const response = await axios.patch(`${API_URL}/users/uploadImage`, { image });
+
+  console.log("res: ", response);
 
   return response.data.user;
 };
@@ -53,6 +62,7 @@ const authService = {
   updateUser,
   getAllUsers,
   getMe,
+  uploadImage,
 };
 
 export default authService;

@@ -7,6 +7,7 @@ import { getAllProjects } from "../../Projects/projectSlice";
 import SkeletonProjects from "../../Skeletons/SkeletonProjects";
 import SkeletonTeams from "../../Skeletons/SkeletonTeams";
 import SkeletonPeople from "../../Skeletons/SkeletonPeople";
+import Avatar from "../../Account/components/Avatar";
 
 const Sidebar = () => {
   const [nameHover, setNameHover] = useState(false);
@@ -146,9 +147,11 @@ const Sidebar = () => {
                     key={user?._id}
                     className='flex items-center relative mb-1 mr-1'
                   >
-                    <span className='h-6 w-6 rounded-full flex items-center justify-center bg-nice-orange font-semibold text-sm select-none '>
-                      {user?.name?.charAt(0)}
-                    </span>
+                    <Avatar
+                      avatarImage={user?.image}
+                      avatarName={user?.name}
+                      classNames='h-6 w-6 text-sm'
+                    />
                     <AnimatePresence>
                       {nameHover && index === indexHover && (
                         <motion.div

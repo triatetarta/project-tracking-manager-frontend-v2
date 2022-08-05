@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
 import { closeAccount, toggleAccount } from "../headerSlice";
 import { logout, reset } from "../../Auth/authSlice";
+import Avatar from "../../Account/components/Avatar";
 
 const Header = () => {
   const { accountOpen } = useSelector((state) => state.header);
@@ -88,9 +89,11 @@ const Header = () => {
             className='flex items-center space-x-1 text-light-blue px-2 py-1 rounded-lg hover:bg-gray-100 transition-all duration-200 accountButton'
           >
             {user ? (
-              <div className='h-7 w-7 rounded-full flex items-center justify-center bg-nice-orange font-semibold text-header-main text-base'>
-                {user?.name.charAt(0)}
-              </div>
+              <Avatar
+                avatarImage={user?.image}
+                avatarName={user?.name}
+                classNames='h-7 w-7 text-base'
+              />
             ) : (
               <UserCircleIcon className='h-8 w-8 pointer-events-none' />
             )}
@@ -130,7 +133,10 @@ const Header = () => {
               ) : (
                 <Link to='/login'>
                   <li
-                    onClick={() => dispatch(closeAccount())}
+                    onClick={() => {
+                      navigate("/login");
+                      dispatch(closeAccount());
+                    }}
                     className='accountMenu cursor-pointer py-2 pl-4 pr-20 hover:bg-gray-100'
                   >
                     Log in

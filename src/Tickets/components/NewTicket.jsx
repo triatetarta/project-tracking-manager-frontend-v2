@@ -75,7 +75,7 @@ const NewTicket = ({ setCreateNew }) => {
 
       return;
     }
-    dispatch(createTicket({ project, description }));
+    dispatch(createTicket({ project, description: description.toLowerCase() }));
   };
 
   return (
@@ -138,22 +138,27 @@ const NewTicket = ({ setCreateNew }) => {
                 {!project && <span className='text-red-text ml-0.5'>*</span>}
               </label>
               <div className='flex items-center justify-between'>
-                <select
-                  className='p-2 border rounded-md mb-3 text-sm hover:bg-gray-100
-            transition-all duration-200 cursor-pointer focus:outline-1 outline-deep-blue'
-                  name='project'
-                  id='project'
-                  value={project}
-                  onChange={(e) => setProject(e.target.value)}
-                >
-                  {projectNames?.map((project, index) => {
-                    return (
-                      <option key={index} value={project}>
-                        {project}
-                      </option>
-                    );
-                  })}
-                </select>
+                {!projects.length ? (
+                  <p className='text-xs p-2 mb-3'>No projects available</p>
+                ) : (
+                  <select
+                    className='p-2 border rounded-md mb-3 text-sm hover:bg-gray-100
+            transition-all duration-200 cursor-pointer focus:outline-1 outline-deep-blue capitalize'
+                    name='project'
+                    id='project'
+                    value={project}
+                    onChange={(e) => setProject(e.target.value)}
+                  >
+                    {projectNames?.map((project, index) => {
+                      return (
+                        <option key={index} value={project}>
+                          {project}
+                        </option>
+                      );
+                    })}
+                  </select>
+                )}
+
                 <div className='flex items-center mb-3'>
                   <CreateProject />
                 </div>

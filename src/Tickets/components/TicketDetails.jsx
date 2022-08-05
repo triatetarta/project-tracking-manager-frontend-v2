@@ -20,6 +20,8 @@ import Modal from "../../Modal/components/Modal";
 import { openTicketModal } from "../../Modal/modalSlice";
 import SkeletonTicketDetails from "../../Skeletons/SkeletonTicketDetails";
 import SkeletonComments from "../../Skeletons/SkeletonComments";
+import { convertString } from "../../utils/firstLetterUpercase";
+import Avatar from "../../Account/components/Avatar";
 
 const TicketDetails = ({ closeTicketDetails, ticketId }) => {
   const { ticket, isTicketLoading, isError, message, updateSuccess } =
@@ -81,7 +83,7 @@ const TicketDetails = ({ closeTicketDetails, ticketId }) => {
 
     const commentData = {
       ticket: ticket._id,
-      comment: commentText,
+      comment: commentText.toLowerCase(),
     };
 
     dispatch(createComment(commentData));
@@ -91,7 +93,11 @@ const TicketDetails = ({ closeTicketDetails, ticketId }) => {
   const onEditEnable = () => {
     if (ticket.user !== user.userId) return;
     setEditDescription(true);
-    setEditDescText(ticket.description);
+
+    const newDesc =
+      ticket.description !== undefined && convertString(ticket?.description);
+
+    setEditDescText(newDesc);
 
     setTimeout(() => {
       descRef.current.focus();
@@ -212,7 +218,9 @@ const TicketDetails = ({ closeTicketDetails, ticketId }) => {
                 </div>
 
                 <div className='flex items-center justify-between'>
-                  <h4 className='text-lg font-medium pr-2'>{ticket.project}</h4>
+                  <h4 className='text-lg font-medium pr-2 capitalize'>
+                    {ticket.project}
+                  </h4>
                   <form>
                     <select
                       disabled={ticket.user !== user.userId}
@@ -303,7 +311,8 @@ const TicketDetails = ({ closeTicketDetails, ticketId }) => {
                               : ""
                           }  mt-1 bg-transparent outline-none hover:bg-gray-100 transition-all duration-200 px-3 py-2 rounded-md break-words`}
                         >
-                          {ticket.description}
+                          {ticket.description !== undefined &&
+                            convertString(ticket?.description)}
                         </motion.p>
                       )}
                     </>
@@ -365,10 +374,12 @@ const TicketDetails = ({ closeTicketDetails, ticketId }) => {
             <div className='mt-10 pl-3'>
               <p className='text-sm font-medium mb-3'>Comments</p>
               <div className='flex items-center space-x-2 w-full'>
-                <div className='h-9 w-9 mb-1'>
-                  <span className='h-9 w-9 rounded-full flex items-center justify-center bg-nice-orange font-semibold text-base select-none'>
-                    {user.name?.charAt(0)}
-                  </span>
+                <div className='h-10 w-10 mb-1'>
+                  <Avatar
+                    avatarImage={user?.image}
+                    avatarName={user?.name}
+                    classNames='h-10 w-10 text-base'
+                  />
                 </div>
 
                 <form className='w-full'>
@@ -409,7 +420,7 @@ const TicketDetails = ({ closeTicketDetails, ticketId }) => {
                         <Comment
                           key={comment._id}
                           {...comment}
-                          author={findAuthor.name}
+                          author={findAuthor}
                         />
                       );
                     })}

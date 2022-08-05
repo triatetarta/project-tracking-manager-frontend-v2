@@ -1,7 +1,9 @@
 import moment from "moment";
 import { useRef, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import Avatar from "../../Account/components/Avatar";
 import { openCommentModal, setCommentId } from "../../Modal/modalSlice";
+import { convertString } from "../../utils/firstLetterUpercase";
 import { updateComment } from "../commentSlice";
 
 const Comment = ({
@@ -24,7 +26,9 @@ const Comment = ({
 
   const onEditEnable = () => {
     setEditEnable(true);
-    setEditText(comment);
+
+    const convComment = comment !== undefined && convertString(comment);
+    setEditText(convComment);
 
     setTimeout(() => {
       inputRef.current.focus();
@@ -33,7 +37,10 @@ const Comment = ({
 
   const onEditCancel = () => {
     setEditEnable(false);
-    setEditText(comment);
+
+    const convComment = comment !== undefined && convertString(comment);
+
+    setEditText(convComment);
   };
 
   const onDelete = () => {
@@ -46,7 +53,7 @@ const Comment = ({
       updateComment({
         commentId: _id,
         commentData: {
-          comment: editText,
+          comment: editText.toLowerCase(),
         },
       })
     );
@@ -56,13 +63,15 @@ const Comment = ({
   return (
     <div className='flex space-x-2 w-full'>
       <div className='h-9 w-9'>
-        <span className='h-9 w-9 rounded-full flex items-center justify-center bg-nice-orange font-semibold text-base select-none'>
-          {author?.charAt(0)}
-        </span>
+        <Avatar
+          classNames='h-9 w-9 text-base'
+          avatarImage={author?.image}
+          avatarName={author?.name}
+        />
       </div>
       <div className='flex flex-col space-y-2 w-full'>
         <div className='flex text-xs'>
-          <p className='text-xs font-semibold'>{author}</p>
+          <p className='text-xs font-semibold'>{author?.name}</p>
           <span className='ml-3 text-gray-text'>
             {createdAt === updatedAt ? (
               <span>
@@ -79,7 +88,9 @@ const Comment = ({
           </span>
         </div>
         {!editEnable ? (
-          <p className='text-sm w-full mb-3'>{comment}</p>
+          <p className='text-sm w-full mb-3'>
+            {comment !== undefined && convertString(comment)}
+          </p>
         ) : (
           <textarea
             ref={inputRef}

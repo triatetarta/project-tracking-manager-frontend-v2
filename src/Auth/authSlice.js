@@ -53,6 +53,25 @@ export const updateUser = createAsyncThunk(
   }
 );
 
+// Upload/Update user's profile pic
+export const uploadImage = createAsyncThunk(
+  "auth/uploadImage",
+  async (image, thunkAPI) => {
+    try {
+      return await authService.uploadImage(image);
+    } catch (error) {
+      const message =
+        (error.response &&
+          error.response.data &&
+          error.response.data.message) ||
+        error.message ||
+        error.toString();
+
+      return thunkAPI.rejectWithValue(message);
+    }
+  }
+);
+
 // Logout user
 export const logout = createAsyncThunk("auth/logout", async () => {
   try {
@@ -109,6 +128,9 @@ export const authSlice = createSlice({
       state.isError = false;
       state.isSuccess = false;
       state.message = "";
+      state.updateSuccess = false;
+      state.getMeLoading = false;
+      state.uploadImageLoading = false;
     },
   },
   extraReducers: (builder) => {
@@ -166,6 +188,19 @@ export const authSlice = createSlice({
         state.isLoading = false;
         state.isError = true;
         state.message = action.payload;
+      })
+      .addCase(uploadImage.pending, (state) => {
+        state.uploadImageLoading = true;
+      })
+      .addCase(uploadImage.rejected, (state, action) => {
+        state.uploadImageLoading = false;
+        state.isError = true;
+        state.message = action.payload;
+      })
+      .addCase(uploadImage.fulfilled, (state, action) => {
+        state.user = action.payload;
+        state.updateSuccess = true;
+        state.uploadImageLoading = false;
       })
       .addCase(getAllUsers.pending, (state) => {
         state.isLoading = true;
