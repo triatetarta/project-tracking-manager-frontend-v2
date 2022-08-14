@@ -4,7 +4,7 @@ import { Nav } from "./Nav";
 import { Home } from "./Home/";
 import TicketsPage from "./Pages/TicketsPage";
 import { Login, Register } from "./Auth";
-import { PrivateRoute } from "./PrivateRoute";
+import { PrivateRoute } from "./Privateroute";
 import { useDispatch, useSelector } from "react-redux";
 import { closeAccount } from "./Nav/NavBarSlice";
 import { Account } from "./Account";
