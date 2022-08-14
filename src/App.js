@@ -9,6 +9,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { closeAccount } from "./Header/headerSlice";
 import { Account } from "./Account";
 import { useEffect } from "react";
+import Favicon from "react-favicon";
 
 const App = () => {
   const { getMeLoading } = useSelector((state) => state.auth);
@@ -37,6 +38,8 @@ const App = () => {
         onClick={(e) => closeOpenMenus(e)}
         className='min-h-screen overflow-hidden'
       >
+        <Favicon url='https://i.imgur.com/qFpAgSP.png' />
+
         <Header />
         <Routes>
           <Route path='/' element={<Home />} />
