@@ -1,6 +1,6 @@
 [[redirects]]
   from = "/api/*"
-  to = "https://auth-workflow-test.herokuapp.com/api/:splat"
+  to = "https://protrack-management.herokuapp.com/api/:splat"
   status = 200
 
 [[redirects]]
