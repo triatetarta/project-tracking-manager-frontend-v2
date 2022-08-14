@@ -147,7 +147,7 @@ const TicketDetails = ({ closeTicketDetails, ticketId }) => {
         initial={{ y: 100, opacity: 0 }}
         animate={{ y: 0, opacity: 1 }}
         exit={{ y: 100, opacity: 0 }}
-        className='bg-white py-6 px-4 mt-28 w-[360px] h-2/3 rounded-md shadow-sm overflow-y-scroll scrollBarWidth before:scrollBarTrack scrollBarThumb'
+        className='bg-white py-6 pr-4 pl-6 mt-28 w-[360px] h-2/3 rounded-md shadow-sm overflow-y-scroll scrollBarWidth before:scrollBarTrack scrollBarThumb'
       >
         {isTicketLoading ? (
           <SkeletonTicketDetails />
@@ -221,7 +221,10 @@ const TicketDetails = ({ closeTicketDetails, ticketId }) => {
                   <h4 className='text-lg font-medium pr-2 capitalize'>
                     {ticket.project}
                   </h4>
-                  <form>
+                  <form className='relative'>
+                    <span className='w-5 h-5 absolute right-2 top-2 text-white z-50 pointer-events-none'>
+                      <ChevronDownIcon />
+                    </span>
                     <select
                       disabled={ticket.user !== user.userId}
                       value={ticket?.status}
@@ -237,7 +240,7 @@ const TicketDetails = ({ closeTicketDetails, ticketId }) => {
                       }}
                       name='status'
                       id='status'
-                      className={` px-2 py-2 rounded-lg cursor-pointer transition-all duration-200 font-semibold outline-none text-sm uppercase ${getStatusStyles()} ${
+                      className={`px-4 py-2 rounded-lg cursor-pointer transition-all duration-200 font-semibold outline-none text-sm uppercase appearance-none relative ${getStatusStyles()} ${
                         ticket.user !== user.userId
                           ? "pointer-events-none select-none"
                           : ""
@@ -345,10 +348,12 @@ const TicketDetails = ({ closeTicketDetails, ticketId }) => {
                     <p className='text-xs text-gray-text mb-1'>Reporter</p>
 
                     <div className='flex items-center'>
-                      <span className='h-5 w-5 rounded-full flex items-center justify-center bg-nice-orange font-semibold text-sm select-none'>
-                        {author.name?.charAt(0)}
-                      </span>
-                      <p className='ml-1 text-xs'>{ticket.name}</p>
+                      <Avatar
+                        avatarImage={author?.image}
+                        avatarName={author?.name}
+                        classNames='h-5 w-5 text-sm'
+                      />
+                      <p className='ml-1 text-xs'>{author?.name}</p>
                     </div>
                   </div>
                   <div className='flex flex-col justify-center mt-5 pl-5'>

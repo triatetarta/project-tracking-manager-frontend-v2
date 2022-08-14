@@ -61,7 +61,9 @@ const Account = () => {
         <div className='container mx-auto relative h-full '>
           <div
             className={`absolute -bottom-8 left-0 group h-28 w-28 ${
-              uploadImage || getMeLoading ? "cursor-wait" : "cursor-pointer"
+              uploadImageLoading || getMeLoading
+                ? "cursor-wait"
+                : "cursor-pointer"
             }`}
           >
             <div className='relative h-28 w-28 overflow-hidden'>
@@ -72,6 +74,7 @@ const Account = () => {
                   avatarImage={user?.image}
                   avatarName={user?.name}
                   classNames='h-28 w-28 absolute'
+                  spanClasses='text-4xl'
                 />
               )}
 

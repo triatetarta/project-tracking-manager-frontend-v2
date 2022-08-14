@@ -105,7 +105,7 @@ const Header = () => {
           </button>
 
           {accountOpen && (
-            <ul className='accountMenu absolute left-0 w-[140.3px] rounded-lg shadow-md border border-gray-200 text-sm bg-white overflow-hidden z-50'>
+            <ul className='accountMenu absolute right-0 w-fit rounded-lg shadow-md border border-gray-200 text-sm bg-white overflow-hidden z-50'>
               {user ? (
                 <>
                   <li className='bg-header-main w-full text-white py-2 px-4'>

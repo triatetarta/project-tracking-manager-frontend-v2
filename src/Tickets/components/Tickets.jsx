@@ -13,6 +13,7 @@ import Ticket from "./Ticket";
 import TicketDetails from "./TicketDetails";
 import { NewProject } from "../../Projects/";
 import SkeletonTicket from "../../Skeletons/SkeletonTicket";
+import TicketsInfo from "./TicketsInfo";
 
 const Tickets = ({ setCreateNew, createNew }) => {
   const [selectedId, setSelectedId] = useState("");
@@ -55,7 +56,7 @@ const Tickets = ({ setCreateNew, createNew }) => {
   };
 
   return (
-    <section className='min-h-[calc(100vh-17.9rem)] px-4 pb-4 flex items-center justify-between flex-col text-header-main relative flex-grow'>
+    <section className='min-h-[calc(100vh-17.9rem)] px-4 pb-4 flex items-center flex-col text-header-main relative flex-grow'>
       <AnimatePresence>
         {openTicket && (
           <TicketDetails
@@ -64,6 +65,8 @@ const Tickets = ({ setCreateNew, createNew }) => {
           />
         )}
       </AnimatePresence>
+
+      <TicketsInfo />
 
       <div className='flex space-x-4 flex-wrap justify-center'>
         <div className='mt-10 flex flex-col bg-gray-100 py-4 px-6 rounded-lg'>

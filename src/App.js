@@ -33,7 +33,10 @@ const App = () => {
 
   return (
     <>
-      <div onClick={(e) => closeOpenMenus(e)} className='min-h-screen'>
+      <div
+        onClick={(e) => closeOpenMenus(e)}
+        className='min-h-screen overflow-hidden'
+      >
         <Header />
         <Routes>
           <Route path='/' element={<Home />} />

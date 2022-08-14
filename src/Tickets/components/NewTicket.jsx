@@ -5,6 +5,7 @@ import toast from "react-hot-toast";
 import { createTicket, reset } from "../ticketSlice";
 import { useNavigate } from "react-router-dom";
 import CreateProject from "../../Projects/components/CreateProject";
+import { ChevronDownIcon } from "@heroicons/react/solid";
 
 const NewTicket = ({ setCreateNew }) => {
   const { user } = useSelector((state) => state.auth);
@@ -137,26 +138,31 @@ const NewTicket = ({ setCreateNew }) => {
                 Project
                 {!project && <span className='text-red-text ml-0.5'>*</span>}
               </label>
-              <div className='flex items-center justify-between'>
+              <div className='flex items-center justify-between relative'>
                 {!projects.length ? (
                   <p className='text-xs p-2 mb-3'>No projects available</p>
                 ) : (
-                  <select
-                    className='p-2 border rounded-md mb-3 text-sm hover:bg-gray-100
-            transition-all duration-200 cursor-pointer focus:outline-1 outline-deep-blue capitalize'
-                    name='project'
-                    id='project'
-                    value={project}
-                    onChange={(e) => setProject(e.target.value)}
-                  >
-                    {projectNames?.map((project, index) => {
-                      return (
-                        <option key={index} value={project}>
-                          {project}
-                        </option>
-                      );
-                    })}
-                  </select>
+                  <div className='relative'>
+                    <span className='w-4 h-4 absolute right-2 top-3 z-50 pointer-events-none text-gray-text'>
+                      <ChevronDownIcon />
+                    </span>
+                    <select
+                      className='py-2 pl-2 pr-6 border rounded-md mb-3 text-sm hover:bg-gray-100
+            transition-all duration-200 cursor-pointer focus:outline-1 outline-deep-blue capitalize appearance-none'
+                      name='project'
+                      id='project'
+                      value={project}
+                      onChange={(e) => setProject(e.target.value)}
+                    >
+                      {projectNames?.map((project, index) => {
+                        return (
+                          <option key={index} value={project}>
+                            {project}
+                          </option>
+                        );
+                      })}
+                    </select>
+                  </div>
                 )}
 
                 <div className='flex items-center mb-3'>
