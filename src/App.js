@@ -8,6 +8,7 @@ import { PrivateRoute } from "./PrivateRoute";
 import { useDispatch, useSelector } from "react-redux";
 import { closeAccount } from "./Header/headerSlice";
 import { Account } from "./Account";
+import Error from "./Pages/Error";
 import { useEffect } from "react";
 import Favicon from "react-favicon";
 
@@ -51,6 +52,7 @@ const App = () => {
           <Route path='/account' element={<PrivateRoute />}>
             <Route path='/account' element={<Account />} />
           </Route>
+          <Route path='*' element={<Error />} />
         </Routes>
       </div>
       <Toaster />
