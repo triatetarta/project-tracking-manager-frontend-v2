@@ -1,12 +1,12 @@
 import { ChevronDownIcon, UserCircleIcon } from "@heroicons/react/solid";
 import { useDispatch, useSelector } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
-import { closeAccount, toggleAccount } from "../headerSlice";
+import { closeAccount, toggleAccount } from "../NavBarSlice";
 import { logout, reset } from "../../Auth/authSlice";
 import Avatar from "../../Account/components/Avatar";
 
-const Header = () => {
-  const { accountOpen } = useSelector((state) => state.header);
+const Nav = () => {
+  const { accountOpen } = useSelector((state) => state.navbar);
   const { user } = useSelector((state) => state.auth);
   const dispatch = useDispatch();
 
@@ -151,4 +151,4 @@ const Header = () => {
   );
 };
 
-export default Header;
+export default Nav;

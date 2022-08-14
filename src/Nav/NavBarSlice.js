@@ -1,8 +1,8 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { initialState } from "./model";
 
-export const headerSlice = createSlice({
-  name: "header",
+export const NavBarSlice = createSlice({
+  name: "navbar",
   initialState,
   reducers: {
     toggleAccount: (state) => {
@@ -14,5 +14,5 @@ export const headerSlice = createSlice({
   },
 });
 
-export const { toggleAccount, closeAccount } = headerSlice.actions;
-export default headerSlice.reducer;
+export const { toggleAccount, closeAccount } = NavBarSlice.actions;
+export default NavBarSlice.reducer;

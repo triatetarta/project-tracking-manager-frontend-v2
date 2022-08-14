@@ -1,12 +1,12 @@
 import { Routes, Route } from "react-router-dom";
 import { Toaster } from "react-hot-toast";
-import { Header } from "./Header";
+import { Nav } from "./Nav";
 import { Home } from "./Home/";
 import TicketsPage from "./Pages/TicketsPage";
 import { Login, Register } from "./Auth";
 import { PrivateRoute } from "./PrivateRoute";
 import { useDispatch, useSelector } from "react-redux";
-import { closeAccount } from "./Header/headerSlice";
+import { closeAccount } from "./Nav/NavBarSlice";
 import { Account } from "./Account";
 import Error from "./Pages/Error";
 import { useEffect } from "react";
@@ -41,7 +41,7 @@ const App = () => {
       >
         <Favicon url='https://i.imgur.com/qFpAgSP.png' />
 
-        <Header />
+        <Nav />
         <Routes>
           <Route path='/' element={<Home />} />
           <Route path='/login' element={<Login />} />
