@@ -11,11 +11,11 @@ const TicketsPage = () => {
       <Sidebar />
       <Tickets setCreateNew={setCreateNew} createNew={createNew} />
 
-      <div className='container fixed bottom-2 right-2 md:right-0 md:bottom-20'>
+      <div className='container fixed bottom-6 md:bottom-20 pr-4 md:pr-0'>
         <div className='relative'>
           <button
             onClick={() => setCreateNew(true)}
-            className='bg-deep-blue text-white self-end mb-4 px-4 py-4 absolute bottom-0 right-0  rounded-full hover:bg-light-blue hover:scale-105 active:scale-95 transition-all duration-150'
+            className='bg-deep-blue text-white self-end mb-4 px-4 py-4 absolute bottom-0 right-0 rounded-full hover:bg-light-blue hover:scale-105 active:scale-95 transition-all duration-150'
           >
             <PlusIcon className='w-4 h-4 md:w-8 md:h-8' />
           </button>
