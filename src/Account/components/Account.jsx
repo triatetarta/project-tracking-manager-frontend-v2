@@ -57,7 +57,7 @@ const Account = () => {
 
   return (
     <section className='flex flex-col min-h-[calc(100vh-17.9rem)]'>
-      <header className='h-48 w-full bg-gradient-to-l from-amber-600 to-amber-300'>
+      <header className='h-32 md:h-48 w-full bg-gradient-to-l from-amber-600 to-amber-300'>
         <div className='container mx-auto relative h-full '>
           <div
             className={`absolute -bottom-8 left-0 group h-28 w-28 ${
@@ -120,7 +120,7 @@ const Account = () => {
         )}
       </AnimatePresence>
 
-      <main className='container mx-auto flex space-x-10 mt-20'>
+      <main className='container mx-auto px-2 flex flex-col-reverse md:flex-row space-x-0 md:space-x-10 mt-20'>
         <AccountInfo />
         <AccountMain ticketClickHandle={ticketClickHandle} />
       </main>

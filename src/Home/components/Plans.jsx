@@ -2,14 +2,14 @@ import PlanCard from "./PlanCard";
 
 const Plans = () => {
   return (
-    <section className='text-header-main flex flex-col mb-20'>
+    <section className='text-header-main flex flex-col mb-20 px-2'>
       <div>
-        <h1 className='text-4xl font-semibold text-center'>
+        <h1 className='text-xl md:text-4xl font-semibold text-center'>
           Simple Plans hosted in the cloud
         </h1>
       </div>
 
-      <div className='flex justify-between space-x-4 mt-10 w-full lg:w-3/4 lg:mx-auto'>
+      <div className='flex flex-col md:flex-row justify-between space-y-6 md:space-y-0 space-x-0 md:space-x-4 mt-10 w-full lg:w-3/4 lg:mx-auto'>
         <PlanCard
           plan='Free'
           price='0'
@@ -37,7 +37,7 @@ const Plans = () => {
         />
       </div>
 
-      <div className='border shadow-md rounded-md text-center mt-8 px-2 py-10 w-full lg:w-3/4 lg:mx-auto'>
+      <div className='border shadow-md rounded-md text-center mt-8 px-2 py-10 w-full lg:w-3/4 lg:mx-auto text-sm md:text-lg'>
         <p>
           <span className='font-bold mr-2'>101+ users?</span>
           Get a discount tailored for large teams!

@@ -70,8 +70,8 @@ const AccountInfo = () => {
   };
 
   return (
-    <div className='flex flex-col pb-4'>
-      <div className='flex flex-col'>
+    <div className='flex flex-col pb-4 mt-4 md:mt-0'>
+      <div className='hidden md:flex flex-col'>
         <p className='text-sm text-gray-text'>Welcome back,</p>
         <h3 className='text-xl font-semibold mb-10 text-header-main'>
           {user?.name}

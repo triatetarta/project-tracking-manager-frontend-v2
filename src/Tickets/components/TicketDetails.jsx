@@ -222,7 +222,13 @@ const TicketDetails = ({ closeTicketDetails, ticketId }) => {
                     {ticket.project}
                   </h4>
                   <form className='relative'>
-                    <span className='w-5 h-5 absolute right-2 top-2 text-white z-50 pointer-events-none'>
+                    <span
+                      className={`w-5 h-5 absolute right-2 top-2 z-50 pointer-events-none ${
+                        ticket?.status === "to do"
+                          ? "text-white"
+                          : "text-header-main"
+                      }`}
+                    >
                       <ChevronDownIcon />
                     </span>
                     <select
@@ -240,7 +246,7 @@ const TicketDetails = ({ closeTicketDetails, ticketId }) => {
                       }}
                       name='status'
                       id='status'
-                      className={`px-4 py-2 rounded-lg cursor-pointer transition-all duration-200 font-semibold outline-none text-sm uppercase appearance-none relative ${getStatusStyles()} ${
+                      className={`pl-4 pr-7 py-2 rounded-lg cursor-pointer transition-all duration-200 font-semibold outline-none text-sm uppercase appearance-none relative ${getStatusStyles()} ${
                         ticket.user !== user.userId
                           ? "pointer-events-none select-none"
                           : ""

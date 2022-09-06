@@ -68,7 +68,7 @@ const Tickets = ({ setCreateNew, createNew }) => {
 
       <TicketsInfo />
 
-      <div className='flex space-x-4 flex-wrap justify-center'>
+      <div className='flex space-x-0 md:space-x-4 flex-wrap justify-center'>
         <div className='mt-10 flex flex-col bg-gray-100 py-4 px-6 rounded-lg'>
           <h1 className='text-lg font-normal mb-4 text-gray-text flex items-center'>
             <span>

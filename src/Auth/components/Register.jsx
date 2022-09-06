@@ -59,7 +59,7 @@ const Register = () => {
 
   return (
     <section className='min-h-[calc(100vh-17.9rem)] flex items-center justify-center flex-col space-y-6 text-header-main'>
-      <div className='flex items-center space-x-2'>
+      <div className='hidden md:flex items-center space-x-2'>
         <div className='h-12 w-12'>
           <svg
             width='100%'
